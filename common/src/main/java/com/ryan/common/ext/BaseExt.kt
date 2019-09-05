@@ -8,12 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
-import com.githink.common.utils.GlideUtils
-import com.githink.common.widgets.DefaultTextWatcher
 import com.ryan.common.http.entity.BaseEntity
 import com.ryan.common.rx.BaseConvert
 import com.ryan.common.rx.BaseConvertBool
 import com.ryan.common.rx.BaseSubscriber
+import com.ryan.common.utils.GlideUtils
+import com.ryan.common.widgets.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor

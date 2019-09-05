@@ -1,4 +1,4 @@
-package cn.githink.common.utils
+package com.ryan.common.utils
 
 import android.view.animation.Interpolator
 import android.view.animation.LinearInterpolator

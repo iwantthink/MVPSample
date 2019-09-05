@@ -1,4 +1,4 @@
-package com.githink.common.utils
+package com.ryan.common.utils
 
 import android.content.Context
 import android.net.ConnectivityManager

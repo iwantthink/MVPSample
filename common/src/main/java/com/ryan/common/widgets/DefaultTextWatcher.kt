@@ -1,4 +1,4 @@
-package com.githink.common.widgets
+package com.ryan.common.widgets
 
 import android.text.Editable
 import android.text.TextWatcher

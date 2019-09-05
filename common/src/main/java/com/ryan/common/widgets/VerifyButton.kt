@@ -1,4 +1,4 @@
-package cn.githink.common.widgets
+package com.ryan.common.widgets
 
 import android.content.Context
 import android.os.Build

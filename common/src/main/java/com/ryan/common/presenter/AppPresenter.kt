@@ -1,8 +1,8 @@
 package com.ryan.common.presenter
 
 import android.content.Context
-import com.githink.common.utils.NetWorkUtils
 import com.ryan.common.presenter.view.AppView
+import com.ryan.common.utils.NetWorkUtils
 import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 

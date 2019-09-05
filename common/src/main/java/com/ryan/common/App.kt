@@ -11,27 +11,30 @@ import javax.inject.Inject
 class App : Application() {
 
     @Inject
-    lateinit var appComponent: AppComponent
+    lateinit var mAppComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
         initAppInJection()
-
-        context = this
+        sContext = this
+        ARouter.openDebug()
         ARouter.init(this)
 
     }
 
+    /**
+     * 初始化AppComponent
+     */
     private fun initAppInJection() {
-        appComponent = DaggerAppComponent.builder()
+        mAppComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this))
             .build()
     }
 
-    /*
-        全局伴生对象
+    /**
+     * 全局伴生对象
      */
     companion object {
-        lateinit var context: Context
+        lateinit var sContext: Context
     }
 }

@@ -81,7 +81,7 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
      */
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder()
-            .appComponent((application as App).appComponent)
+            .appComponent((application as App).mAppComponent)
             .activityModule(ActivityModule(this))
             .lifecycleProviderModule(LifecycleProviderModule(this))
             .build()

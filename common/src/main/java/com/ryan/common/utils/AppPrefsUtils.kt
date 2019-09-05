@@ -1,4 +1,4 @@
-package cn.githink.common.utils
+package com.ryan.common.utils
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,7 +10,7 @@ import com.ryan.common.common.Constant
  * SP工具类
  */
 object AppPrefsUtils {
-    private var sp: SharedPreferences = App.context.getSharedPreferences(Constant.SP_NAME, Context.MODE_PRIVATE)
+    private var sp: SharedPreferences = App.sContext.getSharedPreferences(Constant.SP_NAME, Context.MODE_PRIVATE)
     private var ed: Editor
 
     init {

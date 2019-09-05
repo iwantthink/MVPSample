@@ -53,7 +53,7 @@ abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
 
     private fun initFragmentInjection() {
         activityComponent = DaggerActivityComponent.builder()
-            .appComponent((activity?.application as App).appComponent)
+            .appComponent((activity?.application as App).mAppComponent)
             .activityModule(ActivityModule(this.activity!!))
             .lifecycleProviderModule(LifecycleProviderModule(this))
             .build()

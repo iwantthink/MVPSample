@@ -1,6 +1,5 @@
 package com.ryan.mine.presenter
 
-
 import com.ryan.common.presenter.AppPresenter
 import com.ryan.mine.presenter.view.LoginView
 import com.zyao89.view.zloading.Z_TYPE

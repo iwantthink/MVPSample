@@ -4,22 +4,25 @@ package com.ryan.mine.presenter.activity
 import android.graphics.Paint
 import android.view.View
 import android.widget.TextView
-import cn.githink.common.utils.AlerterUtils
-import cn.githink.mine.R
-import cn.githink.mine.utils.UserPrefsUtils
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.ryan.common.common.AppManager
 import com.ryan.common.ext.onClick
 import com.ryan.common.presenter.activity.AppMvpActivity
+import com.ryan.common.utils.AlerterUtils
+import com.ryan.mine.R
 import com.ryan.mine.data.entity.UserInfo
 import com.ryan.mine.injection.component.DaggerUserComponent
 import com.ryan.mine.injection.module.UserModule
 import com.ryan.mine.presenter.LoginPresenter
 import com.ryan.mine.presenter.view.LoginView
+import com.ryan.mine.utils.UserPrefsUtils
+import com.ryan.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.input_login_layout.*
 import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
+@Route(path = RouterPath.MineModule.LOGIN_PATH)
 class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 

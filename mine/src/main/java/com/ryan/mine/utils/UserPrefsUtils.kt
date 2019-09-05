@@ -1,7 +1,7 @@
-package cn.githink.mine.utils
+package com.ryan.mine.utils
 
-import cn.githink.common.utils.AppPrefsUtils
 import com.ryan.common.common.Constant
+import com.ryan.common.utils.AppPrefsUtils
 import com.ryan.mine.constant.UserConstant
 import com.ryan.mine.data.entity.UserInfo
 

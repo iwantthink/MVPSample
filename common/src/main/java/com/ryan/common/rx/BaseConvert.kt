@@ -1,7 +1,7 @@
 package com.ryan.common.rx
 
 
-import com.githink.common.common.ResultCode
+import com.ryan.common.common.ResultCode
 import com.ryan.common.http.entity.BaseEntity
 import rx.Observable
 import rx.functions.Func1

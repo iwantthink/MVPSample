@@ -1,4 +1,4 @@
-package com.githink.common.common
+package com.ryan.common.common
 
 /*
     网络响应码

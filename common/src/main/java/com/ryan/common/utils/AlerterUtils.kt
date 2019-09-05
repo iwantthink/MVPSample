@@ -1,4 +1,4 @@
-package cn.githink.common.utils
+package com.ryan.common.utils
 
 import android.app.Activity
 import com.ryan.common.R
