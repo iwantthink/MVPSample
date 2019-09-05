@@ -8,6 +8,7 @@ import com.ryan.common.injection.module.ActivityModule
 import com.ryan.common.injection.module.LifecycleProviderModule
 import com.ryan.common.presenter.AppPresenter
 import com.ryan.common.presenter.view.AppView
+import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
@@ -29,7 +30,7 @@ abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
     /**
      * 显示加载框的默认实现
      */
-    override fun showLoading() {
+    override fun showLoading(type: Z_TYPE) {
 
     }
 

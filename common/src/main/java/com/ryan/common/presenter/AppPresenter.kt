@@ -6,9 +6,12 @@ import com.ryan.common.presenter.view.AppView
 import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 
+/**
+ * Present的基础类
+ */
 open class AppPresenter<V : AppView> {
 
-    private lateinit var mView: V
+    lateinit var mView: V
 
     @Inject
     lateinit var lifecycleProvider: LifecycleProvider<*>

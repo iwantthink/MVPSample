@@ -2,6 +2,7 @@ package com.ryan.common.presenter.activity
 
 import android.graphics.Color
 import android.os.Bundle
+import com.alibaba.android.arouter.launcher.ARouter
 import com.ryan.common.App
 import com.ryan.common.R
 import com.ryan.common.injection.component.ActivityComponent
@@ -33,6 +34,7 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
         dialog = ZLoadingDialog(this)
         initActivityInjection()
         injectComponent()
+        ARouter.getInstance().inject(this)
     }
 
     /**

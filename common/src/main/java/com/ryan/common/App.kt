@@ -2,12 +2,11 @@ package com.ryan.common
 
 import android.app.Application
 import android.content.Context
+import com.alibaba.android.arouter.launcher.ARouter
 import com.ryan.common.injection.component.AppComponent
 import com.ryan.common.injection.component.DaggerAppComponent
 import com.ryan.common.injection.module.AppModule
 import javax.inject.Inject
-
-//import cn.githink.common.injection.component.DaggerAppComponent
 
 class App : Application() {
 
@@ -19,6 +18,7 @@ class App : Application() {
         initAppInJection()
 
         context = this
+        ARouter.init(this)
 
     }
 

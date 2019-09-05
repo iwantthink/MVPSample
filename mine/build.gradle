@@ -1,4 +1,19 @@
-apply plugin: 'com.android.library'
+if (isMineModuleRunnable.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 
 android {
     compileSdkVersion 29
@@ -21,6 +36,17 @@ android {
         }
     }
 
+    //根据运行方式的不同加载不同的manifest文件
+    sourceSets {
+        main {
+            if (isMineModuleRunnable.toBoolean()) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -31,4 +57,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     api project(path: ':provider')
+
+    //Dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 }
