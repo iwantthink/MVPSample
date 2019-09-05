@@ -37,25 +37,80 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    /**
+     * ---------------------布局相关 Start---------------------
+     */
+    //noinspection GradleCompatible
+    api 'androidx.constraintlayout:constraintlayout:1.1.3'
+    api 'com.mxn.soul:flowingdrawer-core:2.0.0'
+    api 'com.nineoldandroids:library:2.4.0'
+    //noinspection GradleCompatible
+    api "androidx.legacy:legacy-support-v4:1.0.0"
+    api "androidx.appcompat:appcompat:1.0.0"
+    api "androidx.cardview:cardview:1.0.0"
+    api "com.google.android.material:material:1.0.0"
+    /**
+     * ---------------------布局相关 End---------------------
+     */
+
+    /**
+     * ---------------------底层相关 Start---------------------
+     */
+    //noinspection GradleCompatible
+    api "androidx.appcompat:appcompat:1.0.0"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
     // Anko Commons
     api "org.jetbrains.anko:anko-commons:$anko_version"
     // Support-v4 (only Anko Commons)
     api "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
+
     // RxKotlin and RxAndroid
     api "io.reactivex:rxkotlin:$rx_kotlin_version"
     api "io.reactivex:rxandroid:${rx_android_version}"
+
     //RxLifecycle
     api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
     api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
 
     //Dagger2
     api "com.google.dagger:dagger:$dagger_version"
-    // 这里kapt需要在每个用到Dagger2的模块中添加
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
     //Retrofit
     api "com.squareup.okhttp3:okhttp:${ok_http_version}"
     api "com.squareup.retrofit2:retrofit:${retrofit_version}"
     api "com.squareup.okhttp3:logging-interceptor:${ok_http_version}"
     api "com.squareup.retrofit2:converter-gson:${retrofit_version}"
     api "com.squareup.retrofit2:adapter-rxjava:${retrofit_version}"
+
+    //ARouter
+    api "com.alibaba:arouter-api:$arouter_api_version"
+
+    /**
+     * ---------------------底层相关 End---------------------
+     */
+
+
+    /**
+     * ---------------------第三方布局相关 Start---------------------
+     */
+    //zLoading
+    api 'com.zyao89:zloading:1.1.2'
+    //Glide
+    api "com.github.bumptech.glide:glide:${glide_version}"
+    //Circle ImageView
+    api "de.hdodenhof:circleimageview:2.1.0"
+    //Alerter
+    api "com.tapadoo.android:alerter:${tapadoo_version}"
+    //渐进式状态栏
+    api 'com.jaeger.statusbarutil:library:1.4.0'
+
+    /**
+     * ---------------------第三方布局相关 End---------------------
+     */
+
 }
+
+

@@ -1,11 +1,13 @@
 package com.ryan.common.presenter.view
 
+import com.zyao89.view.zloading.Z_TYPE
+
 interface AppView {
 
     /**
      * 显示加载框
      */
-    fun showLoading()
+    fun showLoading(type: Z_TYPE)
 
     /**
      * 隐藏加载框
