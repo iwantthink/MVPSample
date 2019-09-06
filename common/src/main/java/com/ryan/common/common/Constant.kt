@@ -10,16 +10,16 @@ class Constant {
         /**
          * SP表名
          */
-        const val SP_NAME = "Kotlin_X"
+        const val SP_NAME = "Ryan_SP_FILE"
 
         /**
          * 是否为debug模式
          */
-        val isDebug = true
+        const val isDebug = true
 
         /**
          * Token Key
          */
-        const val KEY_SP_TOKEN = "token"
+        const val LOGIN_SP_TOKEN = "token"
     }
 }

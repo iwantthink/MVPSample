@@ -1,7 +1,7 @@
 package com.ryan.common.common
 
-/*
-    网络响应码
+/**
+ *  网络响应码
  */
 class ResultCode {
     companion object {

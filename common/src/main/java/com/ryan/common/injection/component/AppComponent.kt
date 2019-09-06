@@ -6,7 +6,9 @@ import dagger.Component
 import javax.inject.Singleton
 
 /**
- * App 全局Component 主要是注入全局context
+ * App 全局Component
+ *
+ * 1. 主要是注入全局context
  */
 @Singleton
 @Component(modules = [AppModule::class])

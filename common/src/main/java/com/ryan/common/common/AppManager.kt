@@ -5,6 +5,9 @@ import android.app.ActivityManager
 import android.content.Context
 import java.util.*
 
+/**
+ * 管理Activity
+ */
 class AppManager private constructor() {
 
     private val activityStack: Stack<Activity> = Stack()
@@ -16,30 +19,30 @@ class AppManager private constructor() {
         val instance: AppManager by lazy { AppManager() }
     }
 
-    /*
-        Activity入栈
+    /**
+     * Activity入栈
      */
     fun addActivity(activity: Activity) {
         activityStack.add(activity)
     }
 
-    /*
-        Activity出栈
+    /**
+     *  Activity出栈
      */
     fun finishActivity(activity: Activity) {
         activity.finish()
         activityStack.remove(activity)
     }
 
-    /*
-        获取当前栈顶
+    /**
+     *  获取当前栈顶
      */
     fun currentActivity(): Activity {
         return activityStack.lastElement()
     }
 
-    /*
-        清理栈
+    /**
+     *  清理栈
      */
     fun finishAllActivity() {
         for (activity in activityStack) {
@@ -48,8 +51,8 @@ class AppManager private constructor() {
         activityStack.clear()
     }
 
-    /*
-        退出应用程序
+    /**
+     *  退出应用程序
      */
     fun exitApp(context: Context) {
         finishAllActivity()

@@ -14,7 +14,7 @@ import javax.inject.Inject
 abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
 
     /**
-     * acitviy 持有presenter
+     * Fragment 持有presenter
      */
     @Inject
     lateinit var mPresenter: T

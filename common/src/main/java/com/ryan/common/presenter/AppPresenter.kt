@@ -7,15 +7,25 @@ import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 
 /**
- * Present的基础类
+ * MVP中Present的基础类
+ *
  */
 open class AppPresenter<V : AppView> {
 
+    /**
+     * 持有View层
+     */
     lateinit var mView: V
 
+    /**
+     * 依赖注入
+     */
     @Inject
     lateinit var lifecycleProvider: LifecycleProvider<*>
 
+    /**
+     * 依赖注入
+     */
     @Inject
     lateinit var context: Context
 

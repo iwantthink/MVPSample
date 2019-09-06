@@ -14,7 +14,7 @@ object UserPrefsUtils {
      *  退出登录时，传入null,清空存储
      */
     fun putUserInfo(userInfo: UserInfo?) {
-        AppPrefsUtils.putString(Constant.KEY_SP_TOKEN, userInfo?.userName ?: "")
+        AppPrefsUtils.putString(Constant.LOGIN_SP_TOKEN, userInfo?.userName ?: "")
         AppPrefsUtils.putString(UserConstant.KEY_SP_USER_ICON, userInfo?.userIcon ?: "")
         AppPrefsUtils.putString(UserConstant.KEY_SP_USER_NAME, userInfo?.userName ?: "")
         AppPrefsUtils.putString(UserConstant.KEY_SP_USER_MOBILE, userInfo?.userMobile ?: "")

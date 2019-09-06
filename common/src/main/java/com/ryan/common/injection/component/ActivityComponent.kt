@@ -10,6 +10,7 @@ import dagger.Component
 
 /**
  * Activity级别Component
+ * 帮助被@inject注解标注的变量进行初始化与赋值
  */
 @ActivityScope
 @Component(

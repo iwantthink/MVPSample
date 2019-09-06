@@ -16,14 +16,20 @@ import com.zyao89.view.zloading.ZLoadingDialog
 import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
+/**
+ *  Activity基类
+ */
 abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
 
     /**
-     * acitviy 持有presenter
+     * Activity 持有presenter(通过Dagger注入)
      */
     @Inject
     lateinit var mPresenter: P
 
+    /**
+     * Activity对应的Component
+     */
     lateinit var activityComponent: ActivityComponent
 
     lateinit var dialog: ZLoadingDialog
@@ -34,6 +40,7 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
         dialog = ZLoadingDialog(this)
         initActivityInjection()
         injectComponent()
+        // 注册当前Activity
         ARouter.getInstance().inject(this)
     }
 
@@ -77,7 +84,7 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
     abstract fun injectComponent()
 
     /**
-     * 初始化依赖注解
+     * 初始化通用的依赖注解
      */
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder()

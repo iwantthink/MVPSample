@@ -3,7 +3,6 @@ package com.ryan.mine.presenter.activity
 
 import android.graphics.Paint
 import android.view.View
-import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ryan.common.common.AppManager
 import com.ryan.common.ext.onClick
@@ -19,14 +18,13 @@ import com.ryan.mine.utils.UserPrefsUtils
 import com.ryan.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.input_login_layout.*
-import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
 @Route(path = RouterPath.MineModule.LOGIN_PATH)
 class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
-    private var mForgetPwdBtn: TextView? = null
+//    private var mForgetPwdBtn: TextView? = null
 
     /**
      * 初始化数据，继承自父类
@@ -40,10 +38,9 @@ class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickL
      */
     override fun initView() {
         mLoginLayout.setBackgroundResource(R.drawable.login_bg)
-        mForgetPwdBtn = find(R.id.mForgetPwdBtn)
+//        mForgetPwdBtn = find(R.id.mForgetPwdBtn)
         mForgetPwdBtn!!.paint.isAntiAlias = true //去掉锯齿
         mForgetPwdBtn!!.paint.flags = Paint.UNDERLINE_TEXT_FLAG //添加下划线
-
         //登录
         mLoginBtn.onClick(this)
         //注册
@@ -73,8 +70,6 @@ class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickL
                  * 登录方法
                  */
                 mPresenter.login(mUserNameEt.text.toString(), mPwdEt.text.toString())
-
-
             }
         }
     }

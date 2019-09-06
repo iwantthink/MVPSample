@@ -2,6 +2,9 @@ package com.ryan.common.presenter.view
 
 import com.zyao89.view.zloading.Z_TYPE
 
+/**
+ * MVP中View层的基础模块
+ */
 interface AppView {
 
     /**

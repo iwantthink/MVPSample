@@ -10,7 +10,7 @@ import com.ryan.provider.router.RouterPath
  * 顶级函数，判断是否登录
  */
 fun isLogined(): Boolean {
-    return AppPrefsUtils.getString(Constant.KEY_SP_TOKEN).isNotEmpty()
+    return AppPrefsUtils.getString(Constant.LOGIN_SP_TOKEN).isNotEmpty()
 }
 
 /**

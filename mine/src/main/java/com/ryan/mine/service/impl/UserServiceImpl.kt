@@ -8,10 +8,13 @@ import rx.Observable
 import javax.inject.Inject
 
 /**
+ *  提供依赖注入的构造函数
  */
 class UserServiceImpl @Inject constructor() : UserService {
 
-
+    /**
+     * 依赖注入
+     */
     @Inject
     lateinit var repository: UserRepository
 
