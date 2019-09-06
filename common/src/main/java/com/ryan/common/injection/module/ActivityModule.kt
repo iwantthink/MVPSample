@@ -7,7 +7,7 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Activity级别的Module
+ * 提供Activity实例的Module
  */
 @Module
 class ActivityModule(private val activity: Activity) {
@@ -20,4 +20,5 @@ class ActivityModule(private val activity: Activity) {
     fun providesActivity(): Activity {
         return activity
     }
+
 }

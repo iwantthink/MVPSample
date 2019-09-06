@@ -24,8 +24,6 @@ import org.jetbrains.anko.toast
 class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
-//    private var mForgetPwdBtn: TextView? = null
-
     /**
      * 初始化数据，继承自父类
      */
@@ -85,11 +83,11 @@ class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickL
     }
 
     /**
-     * 依赖注入，继承自父类
+     * 完成具体的Dagger注入(实现成员变量mPresenter，以及其内部变量注入)
      */
     override fun injectComponent() {
         DaggerUserComponent.builder()
-            .activityComponent(activityComponent)
+            .activityComponent(baseActivityComponent)
             .userModule(UserModule())
             .build()
             .inject(this)

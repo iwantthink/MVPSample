@@ -17,12 +17,17 @@ import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 /**
- *  Activity基类
+ *  MVP中的Activity基类
  */
 abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
 
     /**
-     * Activity 持有presenter(通过Dagger注入)
+     * Activity 持有presenter
+     *
+     * 1. 通过具体Activity对应的Component对其进行赋值!!!
+     *     (例如LoginActivity :AppMvpActivity, mPresenter 就由LoginComponent对其进行赋值，
+     *       由于LoginPresenter构造函数直接被Inject注解，所以不需要借助Module)
+     *
      */
     @Inject
     lateinit var mPresenter: P
@@ -30,7 +35,7 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
     /**
      * Activity对应的Component
      */
-    lateinit var activityComponent: ActivityComponent
+    lateinit var baseActivityComponent: ActivityComponent
 
     lateinit var dialog: ZLoadingDialog
 
@@ -79,15 +84,16 @@ abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
     }
 
     /**
-     * 依赖注解子类强制实现
+     * 子类实现真正的桥梁(Component)
      */
     abstract fun injectComponent()
 
     /**
-     * 初始化通用的依赖注解
+     * 创建通用的Activity级别桥梁(Component)
+     * 具体的注入操作交给子类Activity中的具体Component
      */
     private fun initActivityInjection() {
-        activityComponent = DaggerActivityComponent.builder()
+        baseActivityComponent = DaggerActivityComponent.builder()
             .appComponent((application as App).mAppComponent)
             .activityModule(ActivityModule(this))
             .lifecycleProviderModule(LifecycleProviderModule(this))

@@ -9,6 +9,8 @@ import javax.inject.Inject
 /**
  * MVP中Present的基础类
  *
+ * 1. 基础类中的依赖注入，会交给子类对应的Component实现
+ *
  */
 open class AppPresenter<V : AppView> {
 

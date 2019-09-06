@@ -5,6 +5,9 @@ import com.trello.rxlifecycle.LifecycleProvider
 import dagger.Module
 import dagger.Provides
 
+/**
+ * 提供LifecycleProvider实例的Module
+ */
 @Module
 class LifecycleProviderModule(private val lifecycleProvider: LifecycleProvider<*>) {
 

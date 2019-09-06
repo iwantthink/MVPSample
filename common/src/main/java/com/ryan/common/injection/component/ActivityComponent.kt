@@ -9,8 +9,12 @@ import com.trello.rxlifecycle.LifecycleProvider
 import dagger.Component
 
 /**
- * Activity级别Component
- * 帮助被@inject注解标注的变量进行初始化与赋值
+ * Activity级别的Component
+ * 提供依赖(@Inject,@Module&@Provides)和需要依赖(@Inject)之间的桥梁
+ *
+ * 1. 通过context()方法对外提供由AppComponent提供的context
+ * 2. 通过activity()方法对外提供由ActivityModule提供的Activity
+ * 3. 通过lifecycleProvider()方法对外提供由LifecycleProviderModule提供的LifecycleProvider
  */
 @ActivityScope
 @Component(
@@ -25,6 +29,7 @@ interface ActivityComponent {
 
     /**
      * Component管理Inject标注的构造函数的Context
+     * (这个context由AppComponent实现,必须暴露出来,否则会被当做私有)
      */
     fun context(): Context
 

@@ -11,6 +11,9 @@ import com.ryan.common.presenter.view.AppView
 import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
+/**
+ * MVP中的Fragment基类
+ */
 abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
 
     /**

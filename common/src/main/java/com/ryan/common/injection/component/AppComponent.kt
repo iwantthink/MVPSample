@@ -6,9 +6,10 @@ import dagger.Component
 import javax.inject.Singleton
 
 /**
- * App 全局Component
+ * Application级别的Component
+ * 提供依赖(@Inject,@Module&@Provides)和需要依赖(@Inject)之间的桥梁
  *
- * 1. 主要是注入全局context
+ * 1. 通过context()方法对外提供由AppModule创建的Context实例
  */
 @Singleton
 @Component(modules = [AppModule::class])
