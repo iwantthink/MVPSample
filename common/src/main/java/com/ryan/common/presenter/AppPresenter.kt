@@ -20,22 +20,22 @@ open class AppPresenter<V : AppView> {
     lateinit var mView: V
 
     /**
-     * 依赖注入
+     * Dagger注入LifecycleProvider
      */
     @Inject
-    lateinit var lifecycleProvider: LifecycleProvider<*>
+    lateinit var mLifecycleProvider: LifecycleProvider<*>
 
     /**
-     * 依赖注入
+     * Dagger注入ApplicationContext
      */
     @Inject
-    lateinit var context: Context
+    lateinit var mContext: Context
 
     /**
      *  检查网络是否可用
      */
     fun checkNetWork(): Boolean {
-        if (NetWorkUtils.isNetWorkAvailable(context)) {
+        if (NetWorkUtils.isNetWorkAvailable(mContext)) {
             return true
         }
         mView.onError("网络不可用")
