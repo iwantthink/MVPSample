@@ -8,3 +8,6 @@ class Dog constructor() : Creature()
 
 
 class Pig @Inject constructor() : Creature()
+
+
+class Bird @Inject constructor()

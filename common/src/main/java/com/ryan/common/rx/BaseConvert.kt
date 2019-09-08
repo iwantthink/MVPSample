@@ -8,6 +8,8 @@ import rx.functions.Func1
 
 /**
  * 通用数据处理
+ *
+ * status 和message 仅在失败时回传!!
  */
 class BaseConvert<T> : Func1<BaseEntity<T>, Observable<T>> {
     override fun call(t: BaseEntity<T>): Observable<T> {

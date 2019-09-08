@@ -9,8 +9,7 @@ import com.ryan.common.injection.component.ActivityComponent
 import com.ryan.common.injection.component.DaggerActivityComponent
 import com.ryan.common.injection.module.ActivityModule
 import com.ryan.common.injection.module.LifecycleProviderModule
-import com.ryan.common.presenter.AppPresenter
-import com.ryan.common.presenter.view.AppView
+import com.ryan.common.presenter.BaseContract
 import com.tapadoo.alerter.Alerter
 import com.zyao89.view.zloading.ZLoadingDialog
 import com.zyao89.view.zloading.Z_TYPE
@@ -19,13 +18,13 @@ import javax.inject.Inject
 /**
  *  MVP中的Activity基类
  */
-abstract class AppMvpActivity<P : AppPresenter<*>> : AppActivity(), AppView {
+abstract class BaseMvpActivity<P : BaseContract.BasePresenter<*>> : AppActivity(), BaseContract.BaseView {
 
     /**
      * Activity 持有presenter
      *
      * 1. 通过具体Activity对应的Component对其进行赋值!!!
-     *     (例如LoginActivity :AppMvpActivity, mPresenter 就由LoginComponent对其进行赋值，
+     *     (例如LoginActivity :BaseMvpActivity, mPresenter 就由LoginComponent对其进行赋值，
      *       由于LoginPresenter构造函数直接被Inject注解，所以不需要借助Module)
      *
      */

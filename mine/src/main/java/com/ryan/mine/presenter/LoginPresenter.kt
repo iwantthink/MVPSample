@@ -1,8 +1,11 @@
 package com.ryan.mine.presenter
 
-import com.ryan.common.presenter.AppPresenter
+import com.ryan.common.presenter.BaseContract
+import com.ryan.mine.data.entity.UserInfo
 import com.ryan.mine.presenter.view.LoginView
+import com.ryan.mine.service.impl.UserServiceImpl
 import com.zyao89.view.zloading.Z_TYPE
+import rx.Subscriber
 import javax.inject.Inject
 
 
@@ -14,7 +17,10 @@ import javax.inject.Inject
  * 2. 必须使用Inject提供实例，这样父类中的需要注入的变量才能够成功注入(如果使用Module，就必须手动传值，而不是自动注入)
  *
  */
-class LoginPresenter @Inject constructor() : AppPresenter<LoginView>() {
+class LoginPresenter @Inject constructor() : BaseContract.BasePresenter<LoginView>() {
+
+    @Inject
+    lateinit var userServiceImpl: UserServiceImpl
 
     /**
      * 登录功能
@@ -24,6 +30,22 @@ class LoginPresenter @Inject constructor() : AppPresenter<LoginView>() {
             return
         }
         mView.showLoading(Z_TYPE.SNAKE_CIRCLE)
+        /**
+         * 失败时 onError中会带有失败的code 和message
+         *
+         * 成功时 onNext中仅有一个成功的UserInfo
+         */
+        userServiceImpl.login(username, password).subscribe(object : Subscriber<UserInfo>() {
+            override fun onNext(t: UserInfo?) {
+            }
+
+            override fun onCompleted() {
+            }
+
+            override fun onError(e: Throwable?) {
+            }
+
+        })
 
     }
 }

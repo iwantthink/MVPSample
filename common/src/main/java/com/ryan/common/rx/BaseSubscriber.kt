@@ -1,12 +1,12 @@
 package com.ryan.common.rx
 
-import com.ryan.common.presenter.view.AppView
+import com.ryan.common.presenter.BaseContract
 import rx.Subscriber
 
 /**
  * 订阅者通用实现
  */
-open class BaseSubscriber<T>(val v: AppView) : Subscriber<T>() {
+open class BaseSubscriber<T>(val v: BaseContract.BaseView) : Subscriber<T>() {
 
     /**
      * 隐藏加载框,向界面反馈错误

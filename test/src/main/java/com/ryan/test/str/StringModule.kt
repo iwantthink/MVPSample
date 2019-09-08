@@ -25,4 +25,10 @@ class StringModule {
     fun providesDefaultStr(): String {
         return "default default!!!"
     }
+    @Provides
+    @Named("clazz")
+    fun provideClazz(): String {
+        return "clazzzzzz clazzzz!!!"
+    }
+
 }

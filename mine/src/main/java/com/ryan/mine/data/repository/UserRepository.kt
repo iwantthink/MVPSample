@@ -17,7 +17,7 @@ class UserRepository @Inject constructor() {
         用户登录
      */
     fun login(mobile: String, pwd: String): Observable<BaseEntity<UserInfo>> {
-        return HttpHelper.instance.create(UserApi::class.java).login(LoginRequest(mobile, pwd))
+        return HttpHelper.instance.create<UserApi>().login(LoginRequest(mobile, pwd))
     }
 
 }

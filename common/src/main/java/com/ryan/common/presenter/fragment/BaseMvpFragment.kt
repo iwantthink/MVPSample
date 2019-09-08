@@ -6,15 +6,14 @@ import com.ryan.common.injection.component.ActivityComponent
 import com.ryan.common.injection.component.DaggerActivityComponent
 import com.ryan.common.injection.module.ActivityModule
 import com.ryan.common.injection.module.LifecycleProviderModule
-import com.ryan.common.presenter.AppPresenter
-import com.ryan.common.presenter.view.AppView
+import com.ryan.common.presenter.BaseContract
 import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 /**
  * MVP中的Fragment基类
  */
-abstract class AppMvpFragment<T : AppPresenter<*>> : AppFragment(), AppView {
+abstract class BaseMvpFragment<T : BaseContract.BasePresenter<*>> : AppFragment(), BaseContract.BaseView {
 
     /**
      * Fragment 持有presenter

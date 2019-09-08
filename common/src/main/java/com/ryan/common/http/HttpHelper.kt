@@ -18,7 +18,7 @@ class HttpHelper private constructor() {
         val instance: HttpHelper by lazy { HttpHelper() }
     }
 
-    private val retrofit: Retrofit
+    val retrofit: Retrofit
 
     private val interceptor: Interceptor
 
@@ -75,6 +75,10 @@ class HttpHelper private constructor() {
         //设置日志级别
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         return interceptor
+    }
+
+    inline fun <reified T> create(): T {
+        return retrofit.create(T::class.java)
     }
 
     fun <T> create(service: Class<T>): T {

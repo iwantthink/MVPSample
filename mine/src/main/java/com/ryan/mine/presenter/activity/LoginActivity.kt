@@ -6,7 +6,8 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ryan.common.common.AppManager
 import com.ryan.common.ext.onClick
-import com.ryan.common.presenter.activity.AppMvpActivity
+import com.ryan.common.injection.module.ActivityModule
+import com.ryan.common.presenter.activity.BaseMvpActivity
 import com.ryan.common.utils.AlerterUtils
 import com.ryan.mine.R
 import com.ryan.mine.data.entity.UserInfo
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.input_login_layout.*
 import org.jetbrains.anko.toast
 
 @Route(path = RouterPath.MineModule.LOGIN_PATH)
-class LoginActivity : AppMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
+class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
 
 
     /**

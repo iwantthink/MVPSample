@@ -1,9 +1,11 @@
 package com.ryan.test
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.ryan.test.activity.SeconedActivity
 import com.ryan.test.dog.Creature
 import com.ryan.test.dog.Dog
 import com.ryan.test.dog.Pig
@@ -55,11 +57,14 @@ class TestActivity : AppCompatActivity() {
         log<TestActivity>("lastName = $lastName")
         log<TestActivity>("stu = $stu")
         log<TestActivity>("stu.name = ${stu.name}")
+        log<TestActivity>("stu.clazz = ${stu.clazz}")
         log<TestActivity>("dog = ${dog}")
         log<TestActivity>("dog2 = ${dog2}")
 
         log<TestActivity>("pig1 = ${pig1}")
         log<TestActivity>("pig2 = ${pig2}")
+
+//        startActivity(Intent(this, SeconedActivity::class.java))
 
     }
 }
