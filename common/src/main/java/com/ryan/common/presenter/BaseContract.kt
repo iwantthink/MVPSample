@@ -2,8 +2,6 @@ package com.ryan.common.presenter
 
 import android.content.Context
 import com.ryan.common.utils.NetWorkUtils
-import com.trello.rxlifecycle.LifecycleProvider
-import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 interface BaseContract {
@@ -22,12 +20,6 @@ interface BaseContract {
         lateinit var mView: V
 
         /**
-         * Dagger注入LifecycleProvider
-         */
-        @Inject
-        lateinit var mLifecycleProvider: LifecycleProvider<*>
-
-        /**
          * Dagger注入ApplicationContext
          */
         @Inject
@@ -37,10 +29,10 @@ interface BaseContract {
          *  检查网络是否可用
          */
         fun checkNetWork(): Boolean {
-            if (NetWorkUtils.isNetWorkAvailable(mContext)) {
+            if (NetWorkUtils.isNetWorkAvailable()) {
                 return true
             }
-            mView.onError("网络不可用")
+            mView.loadFailed("网络不可用")
             return false
         }
     }
@@ -52,18 +44,18 @@ interface BaseContract {
     interface BaseView {
 
         /**
-         * 显示加载框
+         * 开始加载
          */
-        fun showLoading(type: Z_TYPE)
+        fun startLoading()
 
         /**
-         * 隐藏加载框
+         * 结束加载
          */
-        fun hideLoading()
+        fun loadFinished()
 
         /**
-         * 错误回调
+         * 加载错误
          */
-        fun onError(message: String)
+        fun loadFailed(message: String)
     }
 }

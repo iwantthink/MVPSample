@@ -1,92 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:circleimageview="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/common_yellow"
+                android:background="@color/common_black"
                 android:id="@+id/mLoginLayout">
 
-    <Toolbar android:layout_width="match_parent"
-             android:layout_height="50dp"
-             android:id="@+id/mTitleLayout">
-
-    </Toolbar>
-
-    <LinearLayout
-            android:id="@+id/login_logo"
+    <FrameLayout
+            android:id="@+id/loginLayoutBottom"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/mTitleLayout"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/icon_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:src="@drawable/nav_icon"
-                circleimageview:civ_border_color="@android:color/widget_edittext_dark"
-                circleimageview:civ_border_overlay="false"
-                circleimageview:civ_border_width="2dp"
-                circleimageview:civ_fill_color="@android:color/holo_blue_light"
-
-        />
-
-        <TextView
-                android:layout_width="fill_parent"
+        <ProgressBar
+                android:id="@+id/mPbLogin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:gravity="center"
-                android:text="KotlinX"
-                android:textColor="#ffffff"
-                android:textSize="24sp"/>
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="invisible"/>
 
-        <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="打造最好用的Android Mvp架构"
-                android:textColor="#ffffff"
-                android:textSize="16sp"/>
-    </LinearLayout>
-
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:layout_below="@+id/login_logo">
-
-        <include
-                android:id="@+id/input_layout"
+        <LinearLayout
+                android:id="@+id/loginInputElements"
                 android:layout_width="match_parent"
-                android:layout_height="160dip"
-                layout="@layout/input_login_layout"/>
-
-        <TextView
-                android:id="@+id/mLoginBtn"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/input_layout"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="15dip"
-                android:background="@drawable/text_bg"
-                android:gravity="center"
-                android:paddingBottom="3dip"
-                android:paddingLeft="40dip"
-                android:paddingRight="40dip"
-                android:paddingTop="3dip"
-                android:text="登录"
-                android:textColor="#ffffff"
-                android:textSize="20sp"/>
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
-        <TextView
-                android:id="@+id/mForgetPwdBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/mLoginBtn"
-                android:layout_marginTop="20dp"
-                android:layout_centerInParent="true"
-                android:textColor="@color/common_white"
-                android:text="忘记密码"/>
-    </RelativeLayout>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="什么玩意"
+                    android:textColor="@color/common_white"
+                    android:textSize="24sp"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/mailLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="35dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mEtMail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入邮箱"
+                        android:imeOptions="actionGo"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:text="306698472@mail.com"
+                        android:textColor="@color/common_white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pswLayout"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/mEtPsw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="请输入密码"
+                        android:imeOptions="actionGo"
+                        android:inputType="number"
+                        android:maxLength="20"
+                        android:maxLines="1"
+                        android:text="123456"
+                        android:textColor="@color/common_white"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                    android:id="@+id/mBtnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="登录"
+                    android:textColor="@color/common_white"
+                    android:textSize="16sp"
+                    android:background="@color/common_red"/>
+
+        </LinearLayout>
+    </FrameLayout>
+
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.ryan.common.ext
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -14,13 +15,12 @@ import com.ryan.common.rx.BaseConvertBool
 import com.ryan.common.rx.BaseSubscriber
 import com.ryan.common.utils.GlideUtils
 import com.ryan.common.widgets.DefaultTextWatcher
-import com.trello.rxlifecycle.LifecycleProvider
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.singleTop
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
 
 /**
  * 扩展点击事件
@@ -51,30 +51,29 @@ inline fun <reified activity : Activity> Activity.startTop() {
 }
 
 /**
- * 通用数据转换
+ * RxJava:通用数据转换
  */
 fun <T> Observable<BaseEntity<T>>.convert(): Observable<T> {
-    return this.flatMap(BaseConvert())
+    return flatMap(BaseConvert())
 }
 
 /**
- * bool值转换
+ * RxJava:bool值转换
  */
 fun <T> Observable<BaseEntity<T>>.convertBoolean(): Observable<Boolean> {
     return this.flatMap(BaseConvertBool())
 }
 
 /**
- * 扩展Observable执行
+ * RxJava:扩展Observable执行
+ *
+ * 1. 设置被观察者执行在IO线程,观察者执行在UI线程
  */
-fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>, lifecycleProvider: LifecycleProvider<*>) {
+fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>) {
     //监听主线程
-    this.observeOn(AndroidSchedulers.mainThread())
-        .compose(lifecycleProvider.bindToLifecycle())
-        //订阅
+    observeOn(AndroidSchedulers.mainThread())
         .subscribeOn(Schedulers.io())
         .subscribe(subscriber)
-
 }
 
 /**
@@ -109,4 +108,9 @@ fun View.setVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE
 }
 
-
+/**
+ * 扩展日志输出
+ */
+inline fun <reified T> Any?.log(msg: String) {
+    Log.e(T::class.java.simpleName, msg)
+}

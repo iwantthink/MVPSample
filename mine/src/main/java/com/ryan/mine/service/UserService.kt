@@ -1,12 +1,10 @@
 package com.ryan.mine.service
 
 import com.ryan.mine.data.entity.UserInfo
-import rx.Observable
+import io.reactivex.Observable
 
 /**
- * 描述: ${DESCRIPTION}
- * @author Think
- * @create 2018-10-22 9:39
+ *  定义请求规范，返回Observable
  */
 interface UserService {
 

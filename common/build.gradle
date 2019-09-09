@@ -67,26 +67,30 @@ dependencies {
     api "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
 
     // RxKotlin and RxAndroid
-    api "io.reactivex:rxkotlin:$rx_kotlin_version"
-    api "io.reactivex:rxandroid:${rx_android_version}"
+    api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin_version"
+    api "io.reactivex.rxjava2:rxandroid:${rx_android_version}"
 
     //RxLifecycle
-    api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
-    api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
+//    api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
+//    api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
 
     //Dagger2
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
+    //OKHttp
+    api "com.squareup.okhttp3:logging-interceptor:${ok_http_version}"
+    api "com.squareup.retrofit2:retrofit:${retrofit_version}"
     //Retrofit
     api "com.squareup.okhttp3:okhttp:${ok_http_version}"
-    api "com.squareup.retrofit2:retrofit:${retrofit_version}"
-    api "com.squareup.okhttp3:logging-interceptor:${ok_http_version}"
-    api "com.squareup.retrofit2:converter-gson:${retrofit_version}"
-    api "com.squareup.retrofit2:adapter-rxjava:${retrofit_version}"
+    api "com.squareup.retrofit2:converter-gson:${retrofit_convert_version}"
+    api "com.squareup.retrofit2:adapter-rxjava2:${retrofit_adapter_version}"
 
     //ARouter
     api "com.alibaba:arouter-api:$arouter_api_version"
+    // EventBus
+    api "org.greenrobot:eventbus:$event_bus_version"
+
 
     /**
      * ---------------------底层相关 End---------------------
@@ -97,7 +101,7 @@ dependencies {
      * ---------------------第三方布局相关 Start---------------------
      */
     //zLoading
-    api 'com.zyao89:zloading:1.1.2'
+//    api 'com.zyao89:zloading:1.1.2'
     //Glide
     api "com.github.bumptech.glide:glide:${glide_version}"
     //Circle ImageView

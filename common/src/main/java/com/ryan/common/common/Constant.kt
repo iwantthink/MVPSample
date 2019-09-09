@@ -5,7 +5,7 @@ class Constant {
         /**
          * 接口地址
          */
-        const val SERVER_ADDRESS = "https://github.com/iwantthink"
+        const val SERVER_ADDRESS = "https://github.com/iwantthink/"
 
         /**
          * SP表名

@@ -1,11 +1,13 @@
 package com.ryan.mine.presenter
 
+import android.app.Activity
+import com.ryan.common.ext.execute
+import com.ryan.common.ext.log
 import com.ryan.common.presenter.BaseContract
+import com.ryan.common.rx.BaseSubscriber
 import com.ryan.mine.data.entity.UserInfo
 import com.ryan.mine.presenter.view.LoginView
 import com.ryan.mine.service.impl.UserServiceImpl
-import com.zyao89.view.zloading.Z_TYPE
-import rx.Subscriber
 import javax.inject.Inject
 
 
@@ -22,30 +24,27 @@ class LoginPresenter @Inject constructor() : BaseContract.BasePresenter<LoginVie
     @Inject
     lateinit var userServiceImpl: UserServiceImpl
 
+    @Inject
+    lateinit var mActivity: Activity
+
     /**
-     * 登录功能
+     * 登录
      */
     fun login(username: String, password: String) {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading(Z_TYPE.SNAKE_CIRCLE)
+        mView.startLoading()
         /**
          * 失败时 onError中会带有失败的code 和message
          *
          * 成功时 onNext中仅有一个成功的UserInfo
          */
-        userServiceImpl.login(username, password).subscribe(object : Subscriber<UserInfo>() {
-            override fun onNext(t: UserInfo?) {
-            }
+        userServiceImpl.login(username, password)
+            .execute(object : BaseSubscriber<UserInfo>(mView) {
 
-            override fun onCompleted() {
-            }
+            })
 
-            override fun onError(e: Throwable?) {
-            }
-
-        })
 
     }
 }

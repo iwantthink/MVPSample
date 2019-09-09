@@ -1,6 +1,5 @@
 package com.ryan.common.presenter.activity
 
-import android.graphics.Color
 import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
 import com.ryan.common.App
@@ -8,11 +7,8 @@ import com.ryan.common.R
 import com.ryan.common.injection.component.ActivityComponent
 import com.ryan.common.injection.component.DaggerActivityComponent
 import com.ryan.common.injection.module.ActivityModule
-import com.ryan.common.injection.module.LifecycleProviderModule
 import com.ryan.common.presenter.BaseContract
 import com.tapadoo.alerter.Alerter
-import com.zyao89.view.zloading.ZLoadingDialog
-import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 /**
@@ -32,46 +28,45 @@ abstract class BaseMvpActivity<P : BaseContract.BasePresenter<*>> : AppActivity(
     lateinit var mPresenter: P
 
     /**
-     * Activity对应的Component
+     * Activity对应的基础Component,用来为其子类Component提供实例
      */
     lateinit var baseActivityComponent: ActivityComponent
 
-    lateinit var dialog: ZLoadingDialog
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //初始化ZLoadingDialog
-        dialog = ZLoadingDialog(this)
         initActivityInjection()
         injectComponent()
         // 注册当前Activity
         ARouter.getInstance().inject(this)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.mView
+    }
+
     /**
      * 显示加载框的默认实现
      */
-    override fun showLoading(type: Z_TYPE) {
-        dialog.setLoadingBuilder(type)//设置类型
-            .setLoadingColor(Color.BLACK)//颜色
-            .setHintText("Loading...")
-            .setHintTextColor(Color.GRAY)  // 设置字体颜色
-            .setDurationTime(1.0) // 设置动画时间百分比 - 0.5倍
-            .setCanceledOnTouchOutside(false)
-            .show()
+    override fun startLoading() {
+        showProgressDialog(null, null)
+        hideBadNetworkView()
+        hideLoadErrorView()
+        hideNoContentView()
     }
 
     /**
      * 隐藏加载框的默认实现
      */
-    override fun hideLoading() {
-        dialog.cancel()
+    override fun loadFinished() {
+        closeProgressDialog()
     }
 
     /**
      * 错误信息的默认实现
      */
-    override fun onError(message: String) {
+    override fun loadFailed(message: String) {
+        closeProgressDialog()
         Alerter.create(this)
             .setTitle("消息通知")
             .setText(message)
@@ -95,7 +90,6 @@ abstract class BaseMvpActivity<P : BaseContract.BasePresenter<*>> : AppActivity(
         baseActivityComponent = DaggerActivityComponent.builder()
             .appComponent((application as App).mAppComponent)
             .activityModule(ActivityModule(this))
-            .lifecycleProviderModule(LifecycleProviderModule(this))
             .build()
     }
 

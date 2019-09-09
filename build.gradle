@@ -4,16 +4,20 @@ buildscript {
     // anko 版本号
     ext.anko_version = '0.10.7'
     // rx 系版本号
-    ext.rx_kotlin_version = '1.0.0'
-    ext.rx_android_version = '1.2.1'
+    ext.rx_kotlin_version = '2.4.0'
+    ext.rx_android_version = '2.1.1'
 
-    ext.rx_lifecycle_version = '1.0'
+//    ext.rx_lifecycle_version = '1.0'
 
     ext.dagger_version = '2.17'
 
-    ext.ok_http_version = '3.11.0'
+    ext.ok_http_version = '3.12.4'
+    //EventBus版本号
+    ext.event_bus_version = '3.0.0'
     //retrofit版本号
-    ext.retrofit_version = '2.4.0'
+    ext.retrofit_version = '2.6.1'
+    ext.retrofit_convert_version = '2.6.1'
+    ext.retrofit_adapter_version = '2.6.1'
 
     ext.tapadoo_version = '4.0.2'
 

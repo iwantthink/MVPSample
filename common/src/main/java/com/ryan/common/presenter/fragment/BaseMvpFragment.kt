@@ -1,13 +1,12 @@
 package com.ryan.common.presenter.fragment
 
 import android.os.Bundle
+import android.view.View
 import com.ryan.common.App
 import com.ryan.common.injection.component.ActivityComponent
 import com.ryan.common.injection.component.DaggerActivityComponent
 import com.ryan.common.injection.module.ActivityModule
-import com.ryan.common.injection.module.LifecycleProviderModule
 import com.ryan.common.presenter.BaseContract
-import com.zyao89.view.zloading.Z_TYPE
 import javax.inject.Inject
 
 /**
@@ -32,22 +31,25 @@ abstract class BaseMvpFragment<T : BaseContract.BasePresenter<*>> : AppFragment(
     /**
      * 显示加载框的默认实现
      */
-    override fun showLoading(type: Z_TYPE) {
-
+    override fun startLoading() {
+        mLoading?.visibility = View.VISIBLE
+        hideBadNetworkView()
+        hideLoadErrorView()
+        hideNoContentView()
     }
 
     /**
      * 显示加载框的默认实现
      */
-    override fun hideLoading() {
-
+    override fun loadFinished() {
+        mLoading?.visibility = View.GONE
     }
 
     /**
      * 显示加载框的默认实现
      */
-    override fun onError(message: String) {
-
+    override fun loadFailed(message: String) {
+        mLoading?.visibility = View.GONE
     }
 
 
@@ -57,7 +59,6 @@ abstract class BaseMvpFragment<T : BaseContract.BasePresenter<*>> : AppFragment(
         activityComponent = DaggerActivityComponent.builder()
             .appComponent((activity?.application as App).mAppComponent)
             .activityModule(ActivityModule(this.activity!!))
-            .lifecycleProviderModule(LifecycleProviderModule(this))
             .build()
     }
 }

@@ -5,7 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -28,12 +28,12 @@ class HttpHelper private constructor() {
          * 设置请求头
          */
         interceptor = Interceptor { chain ->
-            val requert = chain.request()
+            val request = chain.request()
                 .newBuilder()
                 .addHeader("Content_Type", "application/json")
                 .addHeader("charset", "UTF-8")
                 .build()
-            chain.proceed(requert)
+            chain.proceed(request)
         }
 
         /**
@@ -45,7 +45,7 @@ class HttpHelper private constructor() {
             //数据处理
             .addConverterFactory(GsonConverterFactory.create())
             //数据适配器
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             //初始化HTTP Client
             .client(initClient())
             .build()
