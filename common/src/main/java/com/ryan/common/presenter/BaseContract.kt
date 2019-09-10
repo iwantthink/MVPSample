@@ -2,6 +2,8 @@ package com.ryan.common.presenter
 
 import android.content.Context
 import com.ryan.common.utils.NetWorkUtils
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 interface BaseContract {
@@ -15,15 +17,39 @@ interface BaseContract {
     abstract class BasePresenter<V : BaseView> {
 
         /**
-         * 持有View层
+         * View层
          */
-        lateinit var mView: V
+        protected var mView: V? = null
 
         /**
          * Dagger注入ApplicationContext
          */
         @Inject
         lateinit var mContext: Context
+
+        protected var mCompositeSubscription: CompositeDisposable = CompositeDisposable()
+
+        fun subscribeDisposable(disposable: Disposable): Unit {
+            mCompositeSubscription.add(disposable)
+        }
+
+        fun unsubscribeDisposable(): Unit {
+            mCompositeSubscription.clear()
+        }
+
+        /**
+         * 绑定View
+         */
+        fun attachView(view: V): Unit {
+            mView = view
+        }
+
+        /**
+         * 解绑View,避免内存泄露
+         */
+        fun detachView(): Unit {
+            mView = null
+        }
 
         /**
          *  检查网络是否可用
@@ -32,7 +58,7 @@ interface BaseContract {
             if (NetWorkUtils.isNetWorkAvailable()) {
                 return true
             }
-            mView.loadFailed("网络不可用")
+            mView?.loadFailed("网络不可用")
             return false
         }
     }

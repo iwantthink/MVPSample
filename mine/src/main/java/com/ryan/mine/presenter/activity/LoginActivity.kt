@@ -1,7 +1,6 @@
 package com.ryan.mine.presenter.activity
 
 
-import android.annotation.SuppressLint
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ryan.common.common.AppManager
@@ -10,21 +9,15 @@ import com.ryan.common.ext.onClick
 import com.ryan.common.presenter.activity.BaseMvpActivity
 import com.ryan.common.utils.AlerterUtils
 import com.ryan.mine.R
-import com.ryan.mine.data.entity.UserInfo
 import com.ryan.mine.injection.component.DaggerUserComponent
 import com.ryan.mine.injection.module.UserModule
-import com.ryan.mine.presenter.LoginPresenter
-import com.ryan.mine.presenter.view.LoginView
-import com.ryan.mine.utils.UserPrefsUtils
+import com.ryan.mine.presenter.contract.LoginContract
 import com.ryan.provider.router.RouterPath
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
-import java.util.concurrent.TimeUnit
 
 @Route(path = RouterPath.MineModule.LOGIN_PATH)
-class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
+class LoginActivity : BaseMvpActivity<LoginContract.LoginPresenter>(), LoginContract.LoginView, View.OnClickListener {
 
     /**
      * 绑定布局文件，继承自父类
@@ -36,7 +29,6 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     /**
      * 初始化数据，继承自父类
      */
-    @SuppressLint("CheckResult")
     override fun initData() {
     }
 
@@ -70,13 +62,15 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     }
 
     /**
-     * 登录回调，保存用户信息，返回首页，实现LoginView
+     * 登录回调，保存用户信息
      */
-    override fun loginResult(result: UserInfo) {
-        toast("登录成功")
+    override fun loginResult() {
+        runOnUiThread {
+            toast("登录成功")
+        }
         //保存用户信息
-        UserPrefsUtils.putUserInfo(result)
-        finish()
+//        UserPrefsUtils.putUserInfo(result)
+//        finish()
     }
 
     /**
@@ -84,11 +78,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
      */
     override fun injectComponent() {
         DaggerUserComponent.builder()
-            .activityComponent(baseActivityComponent)
+            .activityComponent(mBaseActivityComponent)
             .userModule(UserModule())
             .build()
             .inject(this)
-        mPresenter.mView = this
+        mPresenter.attachView(this)
     }
 
     /**

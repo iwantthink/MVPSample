@@ -28,6 +28,12 @@ abstract class BaseMvpFragment<T : BaseContract.BasePresenter<*>> : AppFragment(
         injectComponent()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter.unsubscribeDisposable()
+        mPresenter.detachView()
+    }
+
     /**
      * 显示加载框的默认实现
      */
